@@ -5,7 +5,6 @@
 import math
 import mmh3
 from bitarray import bitarray
-from random import shuffle
 
 class BloomFilter(object):
     '''
@@ -71,3 +70,6 @@ class BloomFilter(object):
         # Return the count of hash functions needed using the formula k = (m/n) * lg(2)
         k = (m / n) * math.log(2)
         return int(k)
+
+
+# def test_bloom_filter()
