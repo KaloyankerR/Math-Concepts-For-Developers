@@ -116,3 +116,10 @@ class BloomFilter(object):
     def __repr__(self):
         representation = f"Size of bit array: {self.size}\nFalse positive Probability: {self.fp_prob} %\nNumber of hash functions: {self.hash_count}\n"
         return representation
+
+
+n = 100
+p = 0.5
+
+bloomf = BloomFilter(n,p)
+print(bloomf)
