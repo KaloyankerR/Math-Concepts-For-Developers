@@ -1,5 +1,3 @@
-# Python3 code for inserting element in skip list
-
 import random
 
 
