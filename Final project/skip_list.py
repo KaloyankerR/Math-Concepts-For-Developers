@@ -2,15 +2,15 @@
 
 import random
 
-class Node(object):
-	'''
-	Class to implement node
-	'''
-	def __init__(self, key, level):
-		self.key = key
+# class Node(object):
+# 	'''
+# 	Class to implement node
+# 	'''
+# 	def __init__(self, key, level):
+# 		self.key = key
 
-		# list to hold references to node of different level
-		self.forward = [None]*(level+1)
+# 		# list to hold references to node of different level
+# 		self.forward = [None]*(level+1)
 
 class SkipList(object):
 	'''
@@ -111,19 +111,32 @@ class SkipList(object):
 				node = node.forward[lvl]
 			print("")
 
-# Driver to test above code
-def main():
-	lst = SkipList(3, 0.5)
-	lst.insertElement(3)
-	lst.insertElement(6)
-	lst.insertElement(7)
-	lst.insertElement(9)
-	lst.insertElement(12)
-	lst.insertElement(19)
-	lst.insertElement(17)
-	lst.insertElement(26)
-	lst.insertElement(21)
-	lst.insertElement(25)
-	lst.displayList()
+# # Driver to test above code
+# def main():
+# 	lst = SkipList(3, 0.5)
+# 	lst.insertElement(3)
+# 	lst.insertElement(6)
+# 	lst.insertElement(7)
+# 	lst.insertElement(9)
+# 	lst.insertElement(12)
+# 	lst.insertElement(19)
+# 	lst.insertElement(17)
+# 	lst.insertElement(26)
+# 	lst.insertElement(21)
+# 	lst.insertElement(25)
+# 	lst.displayList()
 
-main()
+# main()
+lst = SkipList(3, 0.5)
+lst.insertElement(3)
+lst.insertElement(6)
+lst.insertElement(7)
+lst.insertElement(9)
+lst.insertElement(12)
+lst.insertElement(19)
+lst.insertElement(17)
+lst.insertElement(26)
+lst.insertElement(21)
+lst.insertElement(25)
+lst.displayList()
+

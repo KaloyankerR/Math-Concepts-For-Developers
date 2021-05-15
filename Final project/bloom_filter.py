@@ -8,6 +8,7 @@ import mmh3
 from bitarray import bitarray
 import time
 import sys
+import matplotlib.pyplot as plt
 
 class BloomFilter(object):
     '''
@@ -46,6 +47,11 @@ class BloomFilter(object):
             self.bit_array[digest] = True
     
     
+    def add_items_from_list(self, list_items: list):
+        for item in list_items:
+            self.add(item)
+    
+    
     def check(self, item):
         for i in range(self.hash_count):
             digest = mmh3.hash(item, i) % self.size
@@ -55,8 +61,40 @@ class BloomFilter(object):
                 # else there is probability that it exist
                 return False
         return True
+    
+    def check_items_from_list(self, list_items: list):
+        shuffle(list_items)
+        for word in list_items:
+        	if self.check(word):
+        		if word in list_items:
+        			print(f"{word} is a false positive!")
+        		else:
+        			print(f"{word} is probably present!")
+        	else:
+        		print(f"{word} is definitely not present!")
 
 
+    
+    def plot_sizeof_data_structures_compared_to_a_normal_list(self, list_items: list):
+        list_structure = []
+        bloom_filter_structure = BloomFilter(len(list_items), self.fp_prob)
+        
+        for item in list_items:
+            list_structure.append(item)
+            bloom_filter_structure.add(item)
+        
+        bloom_filter_size = sys.getsizeof(bloom_filter_structure)
+        list_strucutre_size = sys.getsizeof(list_structure)
+        
+        data_structures = ["Bloom Filter", "Normal list"]
+        height = [bloom_filter_size, list_strucutre_size]
+        
+        plt.bar(data_structures, height, width = 0.8, color = ['red', 'green'])
+        plt.xlabel('Data Structures')
+        plt.ylabel('Bytes')
+        plt.title('Space usage')
+        plt.show()
+    
     @classmethod
     # n - Number of items expected to be stored in the filter
     # p - False Positive probability in decimal
@@ -74,50 +112,7 @@ class BloomFilter(object):
         k = (m / n) * math.log(2)
         return int(k)
     
-
-n = 2 # no of items to add
-p = 0.5 # false positive probability
-
-bloomf = BloomFilter(n,p)
-print(f"Size of bit array: {bloomf.size}")
-print(f"False positive Probability: {bloomf.fp_prob} %")
-print(f"Number of hash functions: {bloomf.hash_count}\n")
-
-word_present = [
-            "2s","3s","4s","5s","6s","7s","8s","9s","10s","Js","Qs","Ks","As"
-            "2h","3h","4h","5h","6h","7h","8h","9h","10h","Jh","Qh","Kh","Ah"
-            "2d","3d","4d","5d","6d","7d","8d","9d","10d","Jd","Qd","Kd","Ad"
-            "2c","3c","4c","5c","6c","7c","8c","9c","10c","Jc","Qc","Kc","Ac"
-           ]
-
-word_absent = ['bluff','cheater','hate','war','humanity',
-			'racism','hurt','nuke','gloomy','facebook',
-			'geeksforgeeks','twitter']
-
-print("#1")
-t0 = time.perf_counter()
-for item in word_present:
-	bloomf.add(item)
-t1 = time.perf_counter()
-print(t1 - t0)
-
-
-shuffle(word_present)
-shuffle(word_absent)
-
-test_words = word_present[:10] + word_absent
-shuffle(test_words)
-for word in test_words:
-	if bloomf.check(word):
-		if word in word_absent:
-			print(f"{word} is a false positive!")
-		else:
-			print(f"{word} is probably present!")
-	else:
-		print(f"{word} is definitely not present!")
-
-
-print("=" * 20)
-print(sys.getsizeof(word_present))
-print(sys.getsizeof(bloomf))
-
+    
+    def __repr__(self):
+        representation = f"Size of bit array: {self.size}\nFalse positive Probability: {self.fp_prob} %\nNumber of hash functions: {self.hash_count}\n"
+        return representation
