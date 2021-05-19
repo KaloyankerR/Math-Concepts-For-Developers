@@ -1,7 +1,6 @@
-# Python 3 program to build Bloom Filter
 # Install mmh3 and bitarray 3rd party module first
-# pip install mmh3
-# pip install bitarray
+# How to install mmh3 -> pip install mmh3
+# How to install bitarray 3rd party module -> pip install bitarray
 from random import shuffle
 import math
 import mmh3
