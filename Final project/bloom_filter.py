@@ -55,24 +55,11 @@ class BloomFilter(object):
         for i in range(self.hash_count):
             digest = mmh3.hash(item, i) % self.size
             if self.bit_array[digest] == False:
-                # if any of bit is False then,its not present
-                # in filter
+                # if any of the bits is False then,its not present in the filter
                 # else there is probability that it exist
                 return False
         return True
     
-    def check_items_from_list(self, list_items: list):
-        shuffle(list_items)
-        for word in list_items:
-        	if self.check(word):
-        		if word in list_items:
-        			print(f"{word} is a false positive!")
-        		else:
-        			print(f"{word} is probably present!")
-        	else:
-        		print(f"{word} is definitely not present!")
-
-
     
     def plot_sizeof_data_structures_compared_to_a_normal_list(self, list_items: list):
         list_structure = []
