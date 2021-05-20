@@ -96,8 +96,7 @@ class SkipList(object):
 			for i in range(rlevel+1):
 				n.forward[i] = update[i].forward[i]
 				update[i].forward[i] = n
-
-			print("Successfully inserted key {}".format(key))
+                
 
 	def deleteElement(self, search_key):
 
