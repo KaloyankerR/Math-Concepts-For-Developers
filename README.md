@@ -7,5 +7,5 @@
 <br>
 
 |**Course**|
-|---|---|
+|---|
 |<a href="https://softuni.bg/trainings/3282/math-concepts-for-developers-february-2021"> Math Concepts for Developers </a>|
