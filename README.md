@@ -6,6 +6,6 @@
 [logo]: https://nakov.com/wp-content/uploads/2012/03/Software-University-logo-horizontal.png "Logo Title Text 2" 
 <br>
 
-|**Course**|**Certificate**|
+|**Course**|
 |---|---|
 |<a href="https://softuni.bg/trainings/3282/math-concepts-for-developers-february-2021"> Math Concepts for Developers </a>|
